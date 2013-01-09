@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  action: MyString
+  what: MyString
+  with: MyString
+  x: 1
+  y: 1
+  scenario: 
+
+two:
+  action: MyString
+  what: MyString
+  with: MyString
+  x: 1
+  y: 1
+  scenario: 

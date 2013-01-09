@@ -1,0 +1,22 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Message</th>
+    <th>Scenario</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+    <td><%= result.status %></td>
+    <td><%= result.message %></td>
+    <td><%= result.scenario %></td>
+    <td><%= link_to 'Show', scenario_result_path(@scenario, result) %></td>
+    <td><%= link_to 'Destroy', scenario_result_path(@scenario, result), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+

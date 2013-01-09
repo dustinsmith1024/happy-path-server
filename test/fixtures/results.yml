@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  status: false
+  message: MyText
+  scenario: 
+
+two:
+  status: false
+  message: MyText
+  scenario: 

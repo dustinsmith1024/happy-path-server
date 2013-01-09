@@ -1,0 +1,33 @@
+<h1>Listing steps</h1>
+
+<table>
+  <tr>
+    <th>Action</th>
+    <th>What</th>
+    <th>With</th>
+    <th>X</th>
+    <th>Y</th>
+    <th>Scenario</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @steps.each do |step| %>
+  <tr>
+    <td><%= step.action %></td>
+    <td><%= step.what %></td>
+    <td><%= step.with %></td>
+    <td><%= step.x %></td>
+    <td><%= step.y %></td>
+    <td><%= step.scenario %></td>
+    <td><%= link_to 'Show', scenario_step_path(@scenario, step) %></td>
+    <td><%= link_to 'Edit', edit_scenario_step_path(@scenario, step) %></td>
+    <td><%= link_to 'Destroy', scenario_step_path(@scenario, step), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Step', new_scenario_step_path(@scenario) %>

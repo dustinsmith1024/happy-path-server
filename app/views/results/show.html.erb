@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Scenario:</b>
+  <%= @result.scenario.name %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @result.status %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @result.message %>
+</p>
+
+
+<%= link_to 'Back', scenario_results_path(@scenario) %>
