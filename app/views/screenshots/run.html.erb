@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @screenshot.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @screenshot.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @screenshot.url %>
+</p>
+
+<ul>
+<% @screenshot.sizes.each do |size| %>
+	<% if size.height %>
+	<li><%= size.height %> by <%= size.width %></li>
+	<% end %>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_screenshot_path(@screenshot) %> |
+<%= link_to 'Back', screenshots_path %>

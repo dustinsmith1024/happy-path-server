@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108022903) do
+ActiveRecord::Schema.define(:version => 20130119233123) do
 
   create_table "results", :force => true do |t|
     t.boolean  "status"
@@ -30,6 +30,29 @@ ActiveRecord::Schema.define(:version => 20130108022903) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "screenshots", :id => false, :force => true do |t|
+    t.string   "id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
+    t.string   "email"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "delivered"
+    t.string   "file"
+  end
+
+  create_table "sizes", :force => true do |t|
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "screenshot_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "file"
+  end
+
+  add_index "sizes", ["screenshot_id"], :name => "index_sizes_on_screenshot_id"
 
   create_table "steps", :force => true do |t|
     t.string   "action"

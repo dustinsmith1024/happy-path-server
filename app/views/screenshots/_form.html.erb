@@ -1,0 +1,39 @@
+<%= form_for(@screenshot) do |f| %>
+  <% if @screenshot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@screenshot.errors.count, "error") %> prohibited this screenshot from being saved:</h2>
+
+      <ul>
+      <% @screenshot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :url %>: <br />
+    <%= f.text_field :url, placeholder: 'http://example.com' %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>: <br />
+    <%= f.text_field :email, placeholder: "you@gmail.com" %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Message Body" %>: <br />
+    <%= f.text_area :description, placeholder: "A brief message if you want it.", class: "message-body" %>
+  </div>
+  <label>Screenshot Sizes (height X width)</label>
+  <% hi = 1 %>
+  <%= f.fields_for :sizes do |builder| %> 
+      <div class="sizes">
+        <%= hi %>.
+        <%= builder.number_field :height %> x
+        <%= builder.number_field :width %>
+        <% hi = hi + 1 %>
+    </div>
+  <% end -%>
+  <p class="notice">* The screenshots are an image of the whole page, not just the height section.  The height is only used for triggering any height related CSS or JS.</p>
+  <div class="actions">
+    <%= f.submit @button %>
+  </div>
+<% end %>

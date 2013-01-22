@@ -1,18 +1,29 @@
 require 'resque/server'
 HappyPath::Application.routes.draw do
 
-  mount Resque::Server.new, :at => "/resque"
+  #resources :sizes
 
-  resources :scenarios do
-    member do
+  resources :screenshots, :except => [:index, :destroy] do
+   member do
       get 'run'
     end
-    resources :steps
-    resources :results
+    collection do
+      get 'about'
+    end
   end
 
+  #mount Resque::Server.new, :at => "/resque"
+
+  #resources :scenarios do
+  #  member do
+  #    get 'run'
+  #  end
+  #  resources :steps
+  #  resources :results
+  #end
+
   # Home goes to scenario list for now...
-  root :to => 'scenarios#index'
+  root :to => 'screenshots#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

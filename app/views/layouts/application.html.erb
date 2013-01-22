@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HappyPath</title>
+	<meta charset="utf-8">
+	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="A quick way to take responsive screenshots of a webpage.">
+  <title>Responsive Shots</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<section class="content">
+	<h1><a href="/">Responsive Shots</a></h1>
+	<p>Quickly email screenshots of any site at any resolution.</p>
 <%= yield %>
-
+</section>
 </body>
 </html>

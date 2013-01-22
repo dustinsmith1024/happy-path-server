@@ -11,6 +11,10 @@ gem 'test-unit'
 gem 'capybara-webkit'
 gem 'launchy'
 gem 'capybara-screenshot'
+# Mac
+# Couldnt get install to work
+#gem 'image_optim' # https://github.com/toy/image_optim
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,6 +27,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+#gem 'bourbon', '~> 2'
+#gem 'neat'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
