@@ -12,15 +12,58 @@
  *= require_self
  */
 
+/* Going for a 2 color scheme with dark bg and light
+text. A middle section of content with light bg and 
+dark text. Outside for foot should be opposite colors */
+
+$light: #EEE;
+$not-so-light: #DDD;
+$dark: #4A525A;
+
 body {
 	margin: 0 auto;
 	text-align: center;
-	color: #4A525A;
+	color: $dark;
 	font-size: 16px;
 	font-family: Century Gothic, sans-serif;
-	background: #4A525A url('back2.png') repeat;
+	background: $dark url('back2.png') repeat;
 	text-transform: uppercase;
 }
+
+a {
+	color: $dark;
+	font-weight: bold;
+}
+
+footer {
+	width: 300px;
+	max-width: 100%;
+	margin: 20px auto;
+}
+
+footer, footer a {
+	color: #999;
+	margin-top: 5px;
+	a {
+		text-decoration: none;
+		font-weight: normal;
+	}
+	li {
+		display: inline;
+		padding-right: 1em;
+		float: right;
+		&:first-child {
+			float: left;
+			padding-right: 1em;
+		}
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+
 
 h1 {
 	font-size: 1.5em;
@@ -50,14 +93,14 @@ input[type=submit] {
 }
 
 .content {
-	border: 1px solid #DDD;
-	background: #EEE url('back.png') repeat;
+	border: 1px solid $not-so-light;
+	background: $light url('back.png') repeat;
 	box-shadow: 0px 3px 50px #111;
 	border-radius: 3px;
 	padding: 0 20px 20px;
 	width: 300px;
 	max-width: 100%;
-	margin: 20px auto;
+	margin: 20px auto 0 auto;
 	text-align: left;
 }
 

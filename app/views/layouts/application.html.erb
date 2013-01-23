@@ -17,5 +17,11 @@
 	<p>Quickly email screenshots of any site at any resolution.</p>
 <%= yield %>
 </section>
+<footer>
+	<ul>
+		<li><%= Screenshot.all.length %> emails sent.</li>
+		<li><%= link_to 'More info', about_screenshots_path %></li>
+	</ul>
+</footer>
 </body>
 </html>

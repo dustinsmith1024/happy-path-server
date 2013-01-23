@@ -6,6 +6,6 @@
   <body>
     <h2>Here's your screenshots for <%= @screenshot.url %></h2>
     <p><%= @screenshot.description %></p>
-    <p>Resend your screenshots from <a href="http://responsiveshots.com/screenshots/<%= @screenshot.id %>">here.</a></p>
+    <p>Resend your screenshots from <a href="http://responsiveshots.com/screenshots/<%= @screenshot.id %>&token=<%= @screenshot.token %>&email=<%= @screenshot.email %>">here.</a></p>
   </body>
 </html>

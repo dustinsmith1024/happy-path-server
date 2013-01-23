@@ -1,4 +1,5 @@
 class ScreenshotsController < ApplicationController
+  before_filter :check_token, :except => [:new, :about, :index]
   # GET /screenshots
   # GET /screenshots.json
   def index
@@ -32,7 +33,10 @@ class ScreenshotsController < ApplicationController
     Resque.enqueue(Screenshot, @screenshot.id)
 
     respond_to do |format|
-      format.html { redirect_to @screenshot, notice: 'Screenshot was successfully queued up.' }
+      format.html { redirect_to screenshot_path(@screenshot,
+                          :token => @screenshot.token, 
+                          :email => @screenshot.email), 
+                        notice: 'Screenshot was successfully queued up.' }
       format.json { render json: @screenshot, status: :created, location: @screenshot }
     end
   end
@@ -82,7 +86,9 @@ class ScreenshotsController < ApplicationController
 
     respond_to do |format|
       if @screenshot.update_attributes(params[:screenshot])
-        format.html { redirect_to @screenshot, notice: 'Screenshot was successfully updated.' }
+        format.html { redirect_to screenshot_path(@screenshot,
+                          :token => @screenshot.token, 
+                          :email => @screenshot.email), notice: 'Screenshot was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -102,4 +108,17 @@ class ScreenshotsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def check_token
+      #TODO
+      @screenshot = Screenshot.find(params[:id])
+      if params[:token] && params[:email] && params[:token] == @screenshot.token && params[:email] == @screenshot.email
+        # TODO: Add this to the post URL as q query param
+        puts '-----holler'
+      else
+        not_found
+      end
+    end
 end

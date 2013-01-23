@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Email:</b>
   <%= @screenshot.email %>
 </p>
 
@@ -29,6 +29,6 @@
 <% end %>
 </ul>
 
-<%= link_to 'Resend', run_screenshot_path(@screenshot) %> |
-<%= link_to 'Edit Details', edit_screenshot_path(@screenshot) %> |
+<%= link_to 'Resend', run_screenshot_path(@screenshot) %> &#8226; 
+<%= link_to 'Edit Details', edit_screenshot_path(@screenshot) %> &#8226; 
 <%= link_to 'New', new_screenshot_path %>
