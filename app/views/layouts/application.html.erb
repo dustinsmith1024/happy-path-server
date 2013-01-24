@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="A quick way to take responsive screenshots of a webpage.">
+    <meta name="description" content="A quick way to take screenshots of a webpage. Good for checking responsive layouts.">
   <title>Responsive Shots</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -19,7 +19,7 @@
 </section>
 <footer>
 	<ul>
-		<li><%= Screenshot.all.length %> emails sent.</li>
+		<li><%= History.all.length %> emails sent.</li>
 		<li><%= link_to 'More info', about_screenshots_path %></li>
 	</ul>
 </footer>

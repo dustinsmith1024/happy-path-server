@@ -1,6 +1,7 @@
 class Screenshot < ActiveRecord::Base
 	before_create :save_token
 	has_many :sizes
+	has_many :histories
 	accepts_nested_attributes_for :sizes
 	attr_accessible :description, :token, :email, :name, :url, :file, :delivered, :sizes_attributes
 	@queue = :web_tests
@@ -50,6 +51,7 @@ class Screenshot < ActiveRecord::Base
 	  end
 	  # TODO: Could possibly queue this too
 	  ScreenshotMailer.screenshot_email(self).deliver
+	  self.histories.create(email: self.email)
 	  self.delivered = Time.now
 	  self.save!
   end
@@ -57,6 +59,6 @@ class Screenshot < ActiveRecord::Base
   private
 
     def save_token
-    	self.token = SecureRandom.uuid
+    	self.token = SecureRandom.uuid unless self.token
   	end
 end

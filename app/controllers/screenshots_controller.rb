@@ -59,6 +59,7 @@ class ScreenshotsController < ApplicationController
   def edit
     @screenshot = Screenshot.find(params[:id])
     @button = "Update"
+    @update = true
   end
 
   # POST /screenshots
@@ -112,13 +113,20 @@ class ScreenshotsController < ApplicationController
   private
 
     def check_token
-      #TODO
+      # TODO: Cleanup
       @screenshot = Screenshot.find(params[:id])
-      if params[:token] && params[:email] && params[:token] == @screenshot.token && params[:email] == @screenshot.email
-        # TODO: Add this to the post URL as q query param
-        puts '-----holler'
+      if request.get?
+        if params[:token] && params[:email] && params[:token] == @screenshot.token && params[:email] == @screenshot.email
+          puts '--------GET holler'
+        else
+          not_found
+        end
       else
-        not_found
+        if params[:screenshot][:token] && params[:screenshot][:token] == @screenshot.token
+          puts '-------POST holler'
+        else
+          not_found
+        end
       end
     end
 end

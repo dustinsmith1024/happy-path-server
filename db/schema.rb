@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123030117) do
+ActiveRecord::Schema.define(:version => 20130124035747) do
+
+  create_table "histories", :force => true do |t|
+    t.string   "email"
+    t.integer  "screenshot_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "histories", ["screenshot_id"], :name => "index_histories_on_screenshot_id"
 
   create_table "results", :force => true do |t|
     t.boolean  "status"
@@ -36,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20130123030117) do
     t.string   "description"
     t.string   "url"
     t.string   "email"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.datetime "delivered"
     t.string   "file"
     t.string   "token"

@@ -10,6 +10,9 @@
       </ul>
     </div>
   <% end %>
+  <% if @update %>
+    <%= f.hidden_field :token, :value => @screenshot.token %>
+  <% end %>
   <div class="field">
     <%= f.label :url %>: <br />
     <%= f.text_field :url, placeholder: 'http://example.com' %>

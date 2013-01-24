@@ -29,6 +29,6 @@
 <% end %>
 </ul>
 
-<%= link_to 'Resend', run_screenshot_path(@screenshot) %> &#8226; 
-<%= link_to 'Edit Details', edit_screenshot_path(@screenshot) %> &#8226; 
+<%= link_to 'Resend', run_screenshot_path(@screenshot, token: @screenshot.token, email: @screenshot.email) %> &#8226; 
+<%= link_to 'Edit Details', edit_screenshot_path(@screenshot, token: @screenshot.token, email: @screenshot.email) %> &#8226; 
 <%= link_to 'New', new_screenshot_path %>
