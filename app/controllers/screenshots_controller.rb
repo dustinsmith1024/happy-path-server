@@ -1,5 +1,5 @@
 class ScreenshotsController < ApplicationController
-  before_filter :check_token, :except => [:new, :about, :index]
+  before_filter :check_token, :except => [:new, :about, :index, :create]
   # GET /screenshots
   # GET /screenshots.json
   def index
@@ -71,7 +71,9 @@ class ScreenshotsController < ApplicationController
     respond_to do |format|
       if @screenshot.save
         Resque.enqueue(Screenshot, @screenshot.id)
-        format.html { redirect_to @screenshot, notice: 'Screenshot was successfully queued up for delivery.' }
+        format.html { redirect_to screenshot_path(@screenshot,
+                          :token => @screenshot.token, 
+                          :email => @screenshot.email), notice: 'Screenshot was queued up for delivery.' }
         format.json { render json: @screenshot, status: :created, location: @screenshot }
       else
         format.html { render action: "new" }
