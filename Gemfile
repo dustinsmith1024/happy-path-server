@@ -11,6 +11,7 @@ gem 'test-unit'
 gem 'capybara-webkit'
 gem 'launchy'
 gem 'capybara-screenshot'
+gem 'headless'
 # Mac
 # Couldnt get install to work
 #gem 'image_optim' # https://github.com/toy/image_optim
