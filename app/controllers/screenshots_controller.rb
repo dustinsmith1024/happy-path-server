@@ -73,7 +73,7 @@ class ScreenshotsController < ApplicationController
         Resque.enqueue(Screenshot, @screenshot.id)
         format.html { redirect_to screenshot_path(@screenshot,
                           :token => @screenshot.token, 
-                          :email => @screenshot.email), notice: 'Screenshot was queued up for delivery.' }
+                          :email => @screenshot.email), notice: '*Screenshot was queued up for delivery.*' }
         format.json { render json: @screenshot, status: :created, location: @screenshot }
       else
         format.html { render action: "new" }
@@ -89,9 +89,10 @@ class ScreenshotsController < ApplicationController
 
     respond_to do |format|
       if @screenshot.update_attributes(params[:screenshot])
+        Resque.enqueue(Screenshot, @screenshot.id)
         format.html { redirect_to screenshot_path(@screenshot,
                           :token => @screenshot.token, 
-                          :email => @screenshot.email), notice: 'Screenshot was successfully updated.' }
+                          :email => @screenshot.email), notice: '*Screenshot was successfully updated and queued for delivery.*' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -118,15 +119,11 @@ class ScreenshotsController < ApplicationController
       # TODO: Cleanup
       @screenshot = Screenshot.find(params[:id])
       if request.get?
-        if params[:token] && params[:email] && params[:token] == @screenshot.token && params[:email] == @screenshot.email
-          puts '--------GET holler'
-        else
+        unless params[:token] && params[:email] && params[:token] == @screenshot.token && params[:email] == @screenshot.email
           not_found
         end
       else
-        if params[:screenshot][:token] && params[:screenshot][:token] == @screenshot.token
-          puts '-------POST holler'
-        else
+        unless params[:screenshot][:token] && params[:screenshot][:token] == @screenshot.token
           not_found
         end
       end

@@ -33,8 +33,13 @@ class Screenshot < ActiveRecord::Base
   	# These might be definable somewhere else?
 		Capybara.app_host = url
 		Capybara.default_driver = :webkit
-		headless = Headless.new
-  	headless.start
+		
+		if Rails.env.production?
+			# Needs Xfvb on server
+			headless = Headless.new
+  		headless.start
+  	end
+		
 		begin
 			visit(url)
 		  sizes.each do |size|
