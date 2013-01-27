@@ -30,6 +30,8 @@ class ScreenshotsController < ApplicationController
   def run
     @screenshot = Screenshot.find(params[:id])
     #@scenario.run
+    @screenshot.delivered = nil
+    @screenshot.save
     Resque.enqueue(Screenshot, @screenshot.id)
 
     respond_to do |format|
@@ -73,7 +75,7 @@ class ScreenshotsController < ApplicationController
         Resque.enqueue(Screenshot, @screenshot.id)
         format.html { redirect_to screenshot_path(@screenshot,
                           :token => @screenshot.token, 
-                          :email => @screenshot.email), notice: '*Screenshot was queued up for delivery.*' }
+                          :email => @screenshot.email), notice: 'Screenshot was queued up for delivery.' }
         format.json { render json: @screenshot, status: :created, location: @screenshot }
       else
         format.html { render action: "new" }
@@ -86,13 +88,13 @@ class ScreenshotsController < ApplicationController
   # PUT /screenshots/1.json
   def update
     @screenshot = Screenshot.find(params[:id])
-
+    @screenshot.delivered = nil
     respond_to do |format|
       if @screenshot.update_attributes(params[:screenshot])
         Resque.enqueue(Screenshot, @screenshot.id)
         format.html { redirect_to screenshot_path(@screenshot,
                           :token => @screenshot.token, 
-                          :email => @screenshot.email), notice: '*Screenshot was successfully updated and queued for delivery.*' }
+                          :email => @screenshot.email), notice: 'Screenshot was successfully updated and queued for delivery.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
