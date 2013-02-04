@@ -42,10 +42,14 @@ class Screenshot < ActiveRecord::Base
 		
 		begin
 			visit(url)
+			files = []
 		  sizes.each do |size|
 		  	if size.height && size.width
 	      	page.driver.resize_window(size.width, size.height)
-	      	size.file = screenshot_and_save_page[:image]
+	      	screenshot = screenshot_and_save_page
+	      	size.file = screenshot[:image]
+	      	files << size.file
+	      	files << screenshot[:html]
 	      	size.save
 	      	#screenshot_and_open_image
 	      end
@@ -61,6 +65,9 @@ class Screenshot < ActiveRecord::Base
 	  self.histories.create(email: self.email)
 	  self.delivered = Time.now
 	  self.save!
+	  files.each do |file|
+	  	File.delete(file)
+	  end
   end
 
   private
