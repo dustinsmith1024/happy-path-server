@@ -22,7 +22,7 @@ HappyPath::Application.configure do
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
-  config.action_mailer.default_url_options = { :host => 'responsiveshot.com' }
+  config.action_mailer.default_url_options = { :host => 'responsiveshots.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
