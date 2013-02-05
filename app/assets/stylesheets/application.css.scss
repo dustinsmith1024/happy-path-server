@@ -37,6 +37,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	word-wrap: break-word;
+}
+
 footer {
 	position: relative;
 	z-index: 10;
@@ -68,8 +72,6 @@ footer, footer a {
 	}
 }
 
-
-
 h1 {
 	font-size: 1.5em;
 	a {
@@ -88,10 +90,6 @@ input, textarea {
 	background-color: #EEE;
 	border: 1px solid #4a525a;
 	border-radius: 2px;
-}
-
-label {
-	font-weight: bold;
 }
 
 input[type=submit] {
