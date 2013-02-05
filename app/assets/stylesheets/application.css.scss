@@ -17,28 +17,33 @@ text. A middle section of content with light bg and
 dark text. Outside for foot should be opposite colors */
 
 $light: #C5BCB0;
+$light: #EEE;
 $not-so-light: #DDD;
 $dark: #4A525A;
+$blue: #3AA6D0;
 
 body {
 	margin: 0 auto;
 	text-align: center;
-	color: $dark;
+	color: $light;
 	font-size: 16px;
 	font-family: Century Gothic, sans-serif;
-	background: $dark url('back2.png') repeat;
 	text-transform: uppercase;
 }
 
 a {
-	color: $dark;
+	color: $blue;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 footer {
+	position: relative;
+	z-index: 10;
 	width: 300px;
 	max-width: 100%;
 	margin: 20px auto;
+
 }
 
 footer, footer a {
@@ -68,7 +73,7 @@ footer, footer a {
 h1 {
 	font-size: 1.5em;
 	a {
-		color: inherit;
+		color: #3AA6D0;
 		text-decoration: none;
 	}
 }
@@ -92,6 +97,9 @@ label {
 input[type=submit] {
 	text-transform: uppercase;
 	font-size: 90%;
+	background-color: #CCC;
+	color: #333;
+	margin-top: 1.5em;
 }
 
 .field {
@@ -99,9 +107,42 @@ input[type=submit] {
 	padding: 2px;
 }
 
+table, td {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+td {
+	text-align: center;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	div {
+		height: 200%;
+		width: 200%;
+		position: absolute;
+		left: -50%;
+		top: -50%;
+		img {
+			margin: 0 auto;
+			min-width: 50%;
+			min-height: 50%;
+		}
+	}
+}
 .content {
+	position: relative;
+	z-index: 70;
 	border: 1px solid $not-so-light;
-	background: $light url('back22.png') repeat;
+	background-color: rgba(20, 20, 20, .9);
 	box-shadow: 0px 3px 50px #111;
 	border-radius: 3px;
 	padding: 0 20px 20px;
