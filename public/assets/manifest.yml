@@ -3,6 +3,10 @@ back.png: back-986d38179e5a8c5c65e93c4b71678f1e.png
 back/index.png: back-986d38179e5a8c5c65e93c4b71678f1e.png
 back2.png: back2-87cad8e7a9c6fe8348f1686de9873be3.png
 back2/index.png: back2-87cad8e7a9c6fe8348f1686de9873be3.png
+desk-bw-small.jpg: desk-bw-small-d44f2918ade4d4c170279b58ca6eb170.jpg
+desk-bw-small/index.jpg: desk-bw-small-d44f2918ade4d4c170279b58ca6eb170.jpg
+desk-bw.jpg: desk-bw-f82486889e9ad4a986b30fc62b360ba4.jpg
+desk-bw/index.jpg: desk-bw-f82486889e9ad4a986b30fc62b360ba4.jpg
 desk-edit-mac.jpg: desk-edit-mac-d43d5ee1a77334a0440b5ac087ff87e3.jpg
 desk-edit-mac/index.jpg: desk-edit-mac-d43d5ee1a77334a0440b5ac087ff87e3.jpg
 desk-edit.jpg: desk-edit-b7118345a04181429ceb80bd2f6011e1.jpg
@@ -13,5 +17,5 @@ rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 application.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
 application/index.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
-application.css: application-6d148863e04550948ff07264e0df6b14.css
-application/index.css: application-6d148863e04550948ff07264e0df6b14.css
+application.css: application-59d8a9ad7c86aabe1532de83474ab60c.css
+application/index.css: application-59d8a9ad7c86aabe1532de83474ab60c.css
