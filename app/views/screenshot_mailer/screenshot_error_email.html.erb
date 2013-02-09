@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2>Sorry, we had issues taking your screenshots for <%= @screenshot.url %></h2>
+    <p>We will take a look at the logs and try to figure it out.</p>
+    <p><%= link_to 'Want to try fixing your screenshot settings?', screenshot_url(@screenshot.id,
+                          :token => @screenshot.token, 
+                          :email => @screenshot.email)
+                          %></p>
+  </body>
+</html>

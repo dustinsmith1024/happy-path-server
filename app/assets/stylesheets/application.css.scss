@@ -137,6 +137,10 @@ td {
 	}
 }
 
+.field_with_errors {
+	display: inline-block;
+}
+
 .content {
 	position: relative;
 	z-index: 70;

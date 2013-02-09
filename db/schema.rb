@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124035747) do
+ActiveRecord::Schema.define(:version => 20130209163115) do
 
   create_table "histories", :force => true do |t|
     t.string   "email"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130124035747) do
     t.datetime "delivered"
     t.string   "file"
     t.string   "token"
+    t.boolean  "error"
   end
 
   create_table "sizes", :force => true do |t|

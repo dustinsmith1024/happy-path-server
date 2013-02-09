@@ -9,4 +9,11 @@ class ScreenshotMailer < ActionMailer::Base
     mail(:to => screenshot.email,
     	 :subject => "Your screenshot for #{screenshot.url}")
   end
+
+  def screenshot_error_email(screenshot)
+    @screenshot = screenshot
+    
+    mail(:to => screenshot.email,
+    	 :subject => "Errors Taking Your screenshot for #{screenshot.url}")
+  end
 end
