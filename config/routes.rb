@@ -9,6 +9,7 @@ HappyPath::Application.routes.draw do
     end
     collection do
       get 'about'
+      get 'api'
     end
   end
 

@@ -1,5 +1,5 @@
 class ScreenshotsController < ApplicationController
-  before_filter :check_token, :except => [:new, :about, :index, :create]
+  before_filter :check_token, :except => [:new, :about, :index, :create, :api]
   # GET /screenshots
   # GET /screenshots.json
   def index
@@ -25,6 +25,11 @@ class ScreenshotsController < ApplicationController
   def about
     # just a static html page
   end
+
+  def api
+    # just a static html page
+  end
+
   # GET /scenarios/1/run
   # GET /scenarios/1/run.json
   def run

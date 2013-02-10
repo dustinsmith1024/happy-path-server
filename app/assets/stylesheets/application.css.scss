@@ -30,6 +30,15 @@ body {
 	font-family: Century Gothic, sans-serif;
 	text-transform: uppercase;
 }
+.code {
+	overflow: scroll;
+	width: 100%;
+}
+
+.scroll {
+  display: inline-block;
+  white-space: nowrap;
+}
 
 a {
 	color: $blue;
