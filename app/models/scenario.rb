@@ -1,3 +1,6 @@
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
 class Scenario < ActiveRecord::Base
 	has_many :steps
 	has_many :results

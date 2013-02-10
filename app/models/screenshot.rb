@@ -1,3 +1,7 @@
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/poltergeist'
+
 class Screenshot < ActiveRecord::Base
 	before_create :save_token
 	has_many :sizes
@@ -6,9 +10,10 @@ class Screenshot < ActiveRecord::Base
 	attr_accessible :description, :error, :token, :email, :name, :url, :file, :delivered, :sizes_attributes
 	@queue = :web_tests
 	validates_format_of :url, :with => URI::regexp(%w(http https))
-  	validates :email,   
-              :presence => true,   
-              :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }  
+  validates :email,   
+            :presence => true,   
+            :format => { :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i }  
+	
 	def status
 		return delivered.to_s if delivered
 		"Queued up"
@@ -33,45 +38,38 @@ class Screenshot < ActiveRecord::Base
 
 	include Capybara::DSL
   def run
-  	# These might be definable somewhere else?
-	self.error = false
-	Capybara.app_host = url
-	Capybara.default_driver = :webkit
-	
-	if Rails.env.production?
-		# Needs Xfvb on server
-		headless = Headless.new
-		headless.start
-	end
-	
-	begin
-		visit(url)
-		files = []
-	  sizes.each do |size|
-			if size.height && size.width
-	      	page.driver.resize_window(size.width, size.height)
-	      	screenshot = screenshot_and_save_page
-	      	#screenshot_and_open_image
-	      	size.file = screenshot[:image]
-	      	files << size.file
-	      	files << screenshot[:html]
-	      	size.save
-			end
-    end
+    # These might be definable somewhere else?
+		self.error = false
+		Capybara.app_host = url
+		Capybara.default_driver = :poltergeist
+		
+		begin
+			visit(url)
+			files = []
+		  sizes.each_with_index do |size, index|
+				if size.height && size.width
+					file_name = "screenshot_#{id}_#{index}.png"
+		     	page.driver.resize_window(size.width, size.height)
+		      page.driver.render(file_name, full: true)
+		      size.file = file_name
+		      files << size.file
+		      size.save
+				end
+	    end
 		rescue => e
-  	  # TODO: Handle these errors
   	  puts e
   	  self.error = true
   	  ScreenshotMailer.screenshot_error_email(self).deliver
-		end
+		end # End rescue block
+	  
 	  # TODO: Could possibly queue this too
-	ScreenshotMailer.screenshot_email(self).deliver unless self.error
-	self.histories.create(email: self.email)
-	self.delivered = Time.now
-	self.save!
-	files.each do |file|
-		File.delete(file)
-	end
+		ScreenshotMailer.screenshot_email(self).deliver unless self.error
+		self.histories.create(email: self.email)
+		self.delivered = Time.now
+		self.save!
+		files.each do |file|
+			File.delete(file)
+		end
   end
 
   private
