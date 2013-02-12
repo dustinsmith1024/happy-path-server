@@ -41,8 +41,12 @@ class Screenshot < ActiveRecord::Base
     # These might be definable somewhere else?
 		self.error = false
 		Capybara.app_host = url
+		options = {}
+		options[:js_errors]=false
+		Capybara.register_driver :poltergeist do |app|
+  			Capybara::Poltergeist::Driver.new(app, options)
+		end
 		Capybara.default_driver = :poltergeist
-		
 		begin
 			visit(url)
 			files = []
